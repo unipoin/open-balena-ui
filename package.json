@@ -13,7 +13,7 @@
     "@mui/material": "^5.15.13",
     "@raphiniert/ra-data-postgrest": "^2.1.0",
     "assert": "^2.1.0",
-    "axios": "^1.6.8",
+    "axios": "^1.7.4",
     "base32-encode": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "buffer": "^6.0.3",
