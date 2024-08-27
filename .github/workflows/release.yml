@@ -35,7 +35,7 @@ jobs:
           node-version: "lts/*"
       - name: Install dependencies
         run: |
-          npm clean-install --no-fund --no-audit
+          npm install --no-fund --no-audit
           npm install semantic-release @semantic-release/git --no-fund --no-audit
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
