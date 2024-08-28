@@ -12,9 +12,8 @@ COPY ./server ./server
 COPY ./src ./src
 COPY ./webpack.config.js ./
 COPY ./package.json ./
-COPY ./package-lock.json ./
 
-RUN npm install --no-fund --no-update-notifier
+RUN npm install --no-fund --no-update-notifier --no-audit
 
 COPY start.sh ./
 
