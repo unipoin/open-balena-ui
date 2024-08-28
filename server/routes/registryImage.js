@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const { authorize } = require('../middleware');
 
 router.use(bodyParser.json());
-router.use(authorize);
 
 router.post('/deleteRegistryImage', authorize, (req, res) => {
 
