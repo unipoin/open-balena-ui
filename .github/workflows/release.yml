@@ -11,6 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  REPO: ${{ github.repository }}
 
 jobs:
   release:
@@ -25,7 +26,7 @@ jobs:
           private-key: ${{ secrets.CREATE_RELEASE_GITHUB_APP_KEY }}
           # owner is required, otherwise the creds will fail the checkout step
           owner: ${{ github.repository_owner }}
-          repositories: ${{ env.IMAGE_NAME }}
+          repositories: ${REPO#*/}
       - name: Checkout
         uses: actions/checkout@v4
         with:
