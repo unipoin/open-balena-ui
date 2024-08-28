@@ -1,15 +1,12 @@
 #from https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md
-name: Release
+name: Automatic Release
+run-name: ${{ github.actor }} is automatically releasing 🚀
+
 on:
   workflow_dispatch:
-  repository_dispatch:
-    types: [ semantic-release ]
   push:
     branches:
       - main
-
-permissions:
-  contents: read # for checkout
 
 env:
   REGISTRY: ghcr.io
@@ -23,8 +20,16 @@ jobs:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
       pull-requests: write # to be able to comment on released pull requests
-#      id-token: write # to enable use of OIDC for npm provenance
+
     steps:
+      - name: Get token from Github App
+        uses: actions/create-github-app-token@v1
+        id: app_token
+        with:
+          app-id: ${{ secrets.CREATE_RELEASE_GITHUB_APP_ID }}
+          private-key: ${{ secrets.CREATE_RELEASE_GITHUB_APP_KEY }}
+          # owner is required, otherwise the creds will fail the checkout step
+          owner: ${{ github.repository_owner }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -41,7 +46,7 @@ jobs:
         run: npm audit signatures
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app_token.outputs.token }}
         run: npm run release
 
   publish-docker-image:
