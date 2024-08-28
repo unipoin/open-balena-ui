@@ -1,3 +1,11 @@
+## [1.0.5](https://github.com/unipoin/open-balena-ui/compare/v1.0.4...v1.0.5) (2024-08-28)
+
+
+### Bug Fixes
+
+* docker container is now node:22-alpine based. bash is not instal… ([#31](https://github.com/unipoin/open-balena-ui/issues/31)) ([f45e616](https://github.com/unipoin/open-balena-ui/commit/f45e616bad6efe38a1f7088f278bee54fb419da8))
+* docker container is now node:22-alpine based. bash is not installed --> changed to sh. ([3907438](https://github.com/unipoin/open-balena-ui/commit/3907438672b918d6199410431279184ed7bb1e1e))
+
 ## [1.0.4](https://github.com/unipoin/open-balena-ui/compare/v1.0.3...v1.0.4) (2024-08-28)
 
 
