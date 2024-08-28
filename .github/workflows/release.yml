@@ -13,6 +13,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   REPOSITORY: open-balena-ui
 
+
 jobs:
   release:
     name: Release
