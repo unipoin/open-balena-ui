@@ -1,12 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
 require('dotenv').config();
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 console.log(`isDevelopment: ${isDevelopment}`);
+
+const ReactRefreshWebpackPlugin = isDevelopment ? require('@pmmmwh/react-refresh-webpack-plugin') : null;
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
@@ -72,6 +73,13 @@ module.exports = {
         test: /\.html$/,
         use: 'html-loader',
       },
+      {
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false
+        }
+      }
+
     ],
   },
   plugins: [
@@ -103,6 +111,7 @@ module.exports = {
     fallback: {
       crypto: require.resolve('crypto-browserify'),
       stream: require.resolve('stream-browserify'),
+      vm : false
     },
   },
   devtool: 'eval-cheap-module-source-map',
@@ -118,6 +127,6 @@ module.exports = {
     historyApiFallback: true, // Fallback to /index.html for Single Page Applications
     open: true, // Open the browser after server has been started
     hot: true, // Enable Hot Module Replacement
-    port: 3000,
+    port: process.env.PORT || 3000,
   },
 };
