@@ -23,8 +23,7 @@ jobs:
         with:
           app-id: ${{ secrets.CREATE_RELEASE_GITHUB_APP_ID }}
           private-key: ${{ secrets.CREATE_RELEASE_GITHUB_APP_KEY }}
-          # owner is required, otherwise the creds will fail the checkout step
-          owner: ${{ github.repository_owner }}
+          repositories: ${{ env.IMAGE_NAME }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -41,7 +40,7 @@ jobs:
         run: npm audit signatures
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ steps.app_token.outputs.token }}
+          GH_TOKEN: ${{ steps.app_token.outputs.token }}
         run: npm run release
 
   publish-docker-image:
