@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/unipoin/open-balena-ui/compare/v1.0.2...v1.0.3) (2024-08-28)
+
+
+### Bug Fixes
+
+* split github action into two files: release.yml and build-and-pu… ([#29](https://github.com/unipoin/open-balena-ui/issues/29)) ([f88f70c](https://github.com/unipoin/open-balena-ui/commit/f88f70cfd75f6d6d1cfb35e11a63858461111df1))
+* split github action into two files: release.yml and build-and-publish-image.yml. build is run on tags or pull-requests, but only publish on tags. ([174850a](https://github.com/unipoin/open-balena-ui/commit/174850ac93b3afeb9b3132afcedb3fc86a815a9f))
+
 ## [1.0.2](https://github.com/unipoin/open-balena-ui/compare/v1.0.1...v1.0.2) (2024-08-28)
 
 
