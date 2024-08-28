@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/unipoin/open-balena-ui/compare/v1.0.0...v1.0.1) (2024-08-28)
+
+
+### Bug Fixes
+
+* attestation write permission. ([dc4b648](https://github.com/unipoin/open-balena-ui/commit/dc4b6485462d4e8be493def2b8f42ab829ca54b8))
+* attestation write permission. ([#25](https://github.com/unipoin/open-balena-ui/issues/25)) ([fa6787c](https://github.com/unipoin/open-balena-ui/commit/fa6787ce2c4e41c07b8f24ee875ebac68b9e43f7))
+
 # 1.0.0 (2024-08-28)
 
 
