@@ -39,7 +39,6 @@ jobs:
       - name: Install dependencies
         run: |
           npm install --no-fund --no-audit
-          npm install semantic-release @semantic-release/git @semantic-release/changelog --no-fund --no-audit
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
       - name: Release
