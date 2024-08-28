@@ -6,7 +6,10 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - 'v*'
+      - 'v*.*.*'
+  release:
+    types:
+      - 'published'
   pull_request:
     branches:
       - 'main'
