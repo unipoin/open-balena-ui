@@ -1,3 +1,11 @@
+## [1.0.4](https://github.com/unipoin/open-balena-ui/compare/v1.0.3...v1.0.4) (2024-08-28)
+
+
+### Bug Fixes
+
+* add additional line to force new release. ([657d4dd](https://github.com/unipoin/open-balena-ui/commit/657d4dd8d7839f93179ae1b3fd65f91a40b4b10a))
+* trigger docker image build on new releases. ([#30](https://github.com/unipoin/open-balena-ui/issues/30)) ([fe195db](https://github.com/unipoin/open-balena-ui/commit/fe195dbef8c1bafc4330521e95807800175d4327))
+
 ## [1.0.3](https://github.com/unipoin/open-balena-ui/compare/v1.0.2...v1.0.3) (2024-08-28)
 
 
