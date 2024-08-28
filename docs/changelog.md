@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/unipoin/open-balena-ui/compare/v1.0.1...v1.0.2) (2024-08-28)
+
+
+### Bug Fixes
+
+* add empty line to force new release. ([6369926](https://github.com/unipoin/open-balena-ui/commit/63699268c323977be43e1a0530b2cc905c8a3cf6))
+* add empty line to force new release. ([#28](https://github.com/unipoin/open-balena-ui/issues/28)) ([27f9d13](https://github.com/unipoin/open-balena-ui/commit/27f9d13487ce4c74c2e4b214f31bdfbc3ae3a4ec))
+
 ## [1.0.1](https://github.com/unipoin/open-balena-ui/compare/v1.0.0...v1.0.1) (2024-08-28)
 
 
