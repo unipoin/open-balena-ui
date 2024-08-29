@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import React from 'react';
 import { Form, SelectInput, useAuthProvider, useDataProvider, useRecordContext } from 'react-admin';
 import utf8decode from '../lib/utf8decode';
+import environment from '../lib/reactAppEnv';
 
 export class Iframe extends React.Component {
   render() {
@@ -37,7 +38,7 @@ export const DeviceLogs = () => {
 
   const onSubmit = (container) => {
     if (container !== 'default') {
-      let API_HOST = process.env.REACT_APP_OPEN_BALENA_API_URL;
+      let API_HOST = environment.REACT_APP_OPEN_BALENA_API_URL;
 
       return fetch(`${API_HOST}/device/v2/${record.uuid}/logs`, {
         method: 'GET',

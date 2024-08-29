@@ -26,6 +26,14 @@ const devConfigOverwrite = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin(),
+    new webpack.EnvironmentPlugin([
+      'REACT_APP_OPEN_BALENA_UI_URL',
+      'REACT_APP_OPEN_BALENA_POSTGREST_URL',
+      'REACT_APP_OPEN_BALENA_REMOTE_URL',
+      'REACT_APP_OPEN_BALENA_API_URL',
+      'REACT_APP_OPEN_BALENA_API_VERSION',
+      'REACT_APP_BANNER_IMAGE',
+    ]),
   ],
   devServer: {
     static: {

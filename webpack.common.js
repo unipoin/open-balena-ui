@@ -39,7 +39,14 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        use: 'html-loader',
+        use: {
+          loader: 'html-loader',
+          options: {
+            sources: {
+              urlFilter: (attribute, value) => !(/environment.js$/.test(value))
+            }
+          }
+        }
       },
       {
         test: /\.m?js/,
@@ -86,14 +93,6 @@ module.exports = {
       process: 'process/browser',
       Buffer: ['buffer', 'Buffer'],
     }),
-    new webpack.EnvironmentPlugin([
-      'REACT_APP_OPEN_BALENA_UI_URL',
-      'REACT_APP_OPEN_BALENA_POSTGREST_URL',
-      'REACT_APP_OPEN_BALENA_REMOTE_URL',
-      'REACT_APP_OPEN_BALENA_API_URL',
-      'REACT_APP_OPEN_BALENA_API_VERSION',
-      'REACT_APP_BANNER_IMAGE',
-    ]),
   ],
   resolve: {
     modules: ['node_modules', 'src'],

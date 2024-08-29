@@ -1,5 +1,6 @@
 const express = require('express');
 const registryImageRoutes = require('./routes/registryImage');
+const { getReactAppEnv } = require('./controller/appEnvironment');
 
 require('dotenv').config();
 
@@ -9,6 +10,7 @@ const HOST = '0.0.0.0';
 const app = express();
 
 app.use('/', registryImageRoutes);
+app.get('/environment.js', getReactAppEnv);
 app.get('*', express.static('dist'))
 
 app.listen(PORT, HOST);
