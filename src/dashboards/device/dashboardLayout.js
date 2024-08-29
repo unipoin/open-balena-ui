@@ -1,6 +1,6 @@
-import { Box, Card, Tooltip, styled, useTheme } from '@mui/material';
+import { Box, Card, useTheme } from '@mui/material';
 import React from 'react';
-import { TabbedShowLayout, FunctionField, Link, ReferenceField, TextField, useRecordContext } from 'react-admin';
+import { TabbedShowLayout, Title, useRecordContext } from 'react-admin';
 import DeviceConnect from '../../ui/DeviceConnect';
 import DeviceLogs from '../../ui/DeviceLogs';
 import DeviceServices from '../../ui/DeviceServices';
@@ -37,8 +37,9 @@ const DashboardLayout = () => {
           </Card>
 
           <Card sx={{ padding: '15px', marginTop: '15px' }}>
+            <Title title="/" />
             <TabbedShowLayout>
-              <TabbedShowLayout.Tab label="summary">
+              <TabbedShowLayout.Tab label="Summary">
                 <SummaryWidget />
               </TabbedShowLayout.Tab>
               <TabbedShowLayout.Tab label="Config Vars">

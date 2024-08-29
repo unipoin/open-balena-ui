@@ -1,20 +1,27 @@
-FROM node:22-alpine
+FROM node:22-alpine as builder
 
-ARG DEBIAN_FRONTEND=noninteractive
-
-### set default NODE_ENV but allow overwrite with build-arg
-ARG build_node_env=production
-ENV NODE_ENV=$build_node_env
+ENV NODE_ENV=development
 
 WORKDIR /usr/src/app
 
 COPY ./server ./server
 COPY ./src ./src
-COPY ./webpack.config.js ./
+COPY ./webpack.*.js ./
 COPY ./package.json ./
+
+RUN npm install --no-fund --no-update-notifier --no-audit \
+    && NODE_ENV=production BABEL_ENV=node npm run build
+
+FROM node:22-alpine
+
+ENV NODE_ENV=production
+
+WORKDIR /usr/src/app
+
+COPY --from=builder /usr/src/app/server/ /usr/src/app/server/
+COPY --from=builder /usr/src/app/dist/ /usr/src/app/dist/
+COPY --from=builder /usr/src/app/package.json /usr/src/app/package.json
 
 RUN npm install --no-fund --no-update-notifier --no-audit
 
-COPY start.sh ./
-
-CMD ["sh", "start.sh"]
+CMD ["npm", "run", "serve"]
