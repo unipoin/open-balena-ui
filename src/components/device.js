@@ -24,7 +24,7 @@ import {
   useRedirect,
 } from 'react-admin';
 import { v4 as uuidv4 } from 'uuid';
-import { useCreateDevice, useModifyDevice } from '../lib/device';
+import { useCreateDevice, useModifyDevice, useSetServicesForNewDevice } from '../lib/device';
 import CopyChip from '../ui/CopyChip';
 import DeleteDeviceButton from '../ui/DeleteDeviceButton';
 import DeviceConnectButton from '../ui/DeviceConnectButton';
@@ -157,10 +157,16 @@ export const DeviceList = (props) => {
 
 export const DeviceCreate = (props) => {
   const createDevice = useCreateDevice();
+  const setServicesForNewDevice = useSetServicesForNewDevice();
   const redirect = useRedirect();
 
+  const onSuccess = async (data) => {
+    await setServicesForNewDevice(data);
+    redirect('list', 'device', data.id);
+  }
+
   return (
-    <Create title='Create Device' transform={createDevice} redirect='list'>
+    <Create title='Create Device' transform={createDevice} mutationOptions={{ onSuccess }}>
       <SimpleForm>
         <Row>
           <TextInput
