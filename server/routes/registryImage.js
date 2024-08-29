@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const { authorize } = require('../middleware');
+const { deleteRegistryImage, deleteOrphanedRegistryImages } = require('../controller/registryImage');
 
 router.use(bodyParser.json());
 
