@@ -1,4 +1,4 @@
-const { s3Client, bucketNames } = require('../../util/s3/client');
+const { s3Client, bucketNames } = require('../../util/s3');
 
 module.exports = (imageLocationHash) => new Promise((resolve, reject) => {
 
