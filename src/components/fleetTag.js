@@ -91,43 +91,25 @@ export const FleetTagCreate = () => {
   );
 }
 
-export const FleetTagEdit = () => {
-  const unique = useUnique();
-  return(
-    <Edit title='Edit Fleet Tag'>
-      <SimpleForm>
-        <ReferenceInput
-          source='application'
-          reference='application'
-          target='id'
-          perPage={1000}
-          sort={{ field: 'app name', order: 'ASC' }}
-        >
-          <SelectInput label='Fleet name' optionText='app name' optionValue='id' validate={required()} fullWidth={true} />
-        </ReferenceInput>
-
-        <Row>
-          <FormDataConsumer>
-            {({formData}) => (
-              <TextInput
-                label='Name'
-                source='tag key'
-                validate={[required(), unique({
-                  filter: {
-                    application: formData.application,
-                  },
-                  message: uniqueIssueMessage
-                })]}
-                size='large' />
-            )}
-
-          </FormDataConsumer>
-          <TextInput label='Value' source='value' validate={required()} size='large' />
-        </Row>
-      </SimpleForm>
-    </Edit>
-  );
-}
+export const FleetTagEdit = () => (
+  <Edit title='Edit Fleet Tag'>
+    <SimpleForm>
+      <ReferenceInput
+        source='application'
+        reference='application'
+        target='id'
+        perPage={1000}
+        sort={{ field: 'app name', order: 'ASC' }}
+      >
+        <SelectInput label='Fleet name' optionText='app name' optionValue='id' validate={required()} fullWidth={true} />
+      </ReferenceInput>
+      <Row>
+        <TextInput label='Name' source='tag key' validate={required()} size='large' />
+        <TextInput label='Value' source='value' validate={required()} size='large' />
+      </Row>
+    </SimpleForm>
+  </Edit>
+);
 
 const fleetTag = {
   list: FleetTagList,

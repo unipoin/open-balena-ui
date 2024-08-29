@@ -90,43 +90,26 @@ export const FleetConfigVarCreate = () => {
   );
 }
 
-export const FleetConfigVarEdit = () => {
-  const unique = useUnique();
-  return (
-    <Edit title='Edit Fleet Config Var'>
-      <SimpleForm>
-        <ReferenceInput
-          source='application'
-          reference='application'
-          target='id'
-          perPage={1000}
-          sort={{ field: 'app name', order: 'ASC' }}
-        >
-          <SelectInput label='Fleet name' optionText='app name' optionValue='id' validate={required()} fullWidth={true} />
-        </ReferenceInput>
+export const FleetConfigVarEdit = () => (
+  <Edit title='Edit Fleet Config Var'>
+    <SimpleForm>
+      <ReferenceInput
+        source='application'
+        reference='application'
+        target='id'
+        perPage={1000}
+        sort={{ field: 'app name', order: 'ASC' }}
+      >
+        <SelectInput label='Fleet name' optionText='app name' optionValue='id' validate={required()} fullWidth={true} />
+      </ReferenceInput>
 
-        <Row>
-          <FormDataConsumer>
-            {({formData}) => (
-              <TextInput
-                label='Name'
-                source='name'
-                validate={[required(), unique({
-                  filter: {
-                    application: formData.application,
-                  },
-                  message: uniqueIssueMessage
-                })]}
-                size='large' />
-            )}
-
-          </FormDataConsumer>
-          <TextInput label='Value' source='value' validate={required()} size='large' />
-        </Row>
-      </SimpleForm>
-    </Edit>
-  );
-};
+      <Row>
+        <TextInput label='Name' source='name' validate={required()} size='large' />
+        <TextInput label='Value' source='value' validate={required()} size='large' />
+      </Row>
+    </SimpleForm>
+  </Edit>
+);
 
 const fleetConfigVar = {
   list: FleetConfigVarList,
