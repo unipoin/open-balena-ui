@@ -22,6 +22,7 @@ import {
   Toolbar,
   required,
   useRedirect,
+  useListContext,
 } from 'react-admin';
 import { v4 as uuidv4 } from 'uuid';
 import { useCreateDevice, useModifyDevice, useSetServicesForNewDevice } from '../lib/device';
@@ -97,13 +98,16 @@ export const ReleaseField = (props) => {
 
 const deviceFilters = [<SearchInput source="#uuid,device name,status@ilike" alwaysOn />];
 
-const CustomBulkActionButtons = (props) => (
-  <React.Fragment>
-    <DeleteDeviceButton size="small" {...props}>
-      Delete Selected Devices
-    </DeleteDeviceButton>
-  </React.Fragment>
-);
+const CustomBulkActionButtons = (props) => {
+  const { selectedIds } = useListContext();
+  return (
+    <React.Fragment>
+      <DeleteDeviceButton size="small" selectedIds={selectedIds} {...props}>
+        Delete Selected Devices
+      </DeleteDeviceButton>
+    </React.Fragment>
+  );
+};
 
 const ExtendedPagination = (
   { rowsPerPageOptions = [5, 10, 25, 50, 100, 250], ...rest }
