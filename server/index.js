@@ -9,7 +9,7 @@ const HOST = '0.0.0.0';
 const app = express();
 
 app.use('/', registryImageRoutes);
-app.get('*', express.static('build'))
+app.get('*', express.static('dist'))
 
 app.listen(PORT, HOST);
 console.log(`Running open-balena-ui on http://${HOST}:${PORT}`);

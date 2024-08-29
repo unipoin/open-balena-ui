@@ -50,7 +50,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(process.cwd(), 'build'),
+    path: path.resolve(process.cwd(), 'dist'),
     publicPath: '/',
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].[contenthash].chunk.js',
