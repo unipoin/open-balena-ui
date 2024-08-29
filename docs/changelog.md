@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/unipoin/open-balena-ui/compare/v1.0.5...v1.1.0) (2024-08-29)
+
+
+### Bug Fixes
+
+* Explicit requirement for controllers added ([2ea7689](https://github.com/unipoin/open-balena-ui/commit/2ea768965432aaab1f1b6d5006a9c5990af63018))
+* Handle requests without Auth header more gently ([002ee26](https://github.com/unipoin/open-balena-ui/commit/002ee26bbd00684051ab0db1869da1f72ef40152))
+
+
+### Features
+
+* Throw error if OPEN_BALENA_S3_URL is not set in env ([f66a7f5](https://github.com/unipoin/open-balena-ui/commit/f66a7f5ea0554cb839a6b47c1974001bc8e1efb9))
+* Title shown in App Bar to be in sync with tab selected ([8c93312](https://github.com/unipoin/open-balena-ui/commit/8c93312c67bb3e4108926cbe13ed11eb62aa88c0))
+
 ## [1.0.5](https://github.com/unipoin/open-balena-ui/compare/v1.0.4...v1.0.5) (2024-08-28)
 
 
