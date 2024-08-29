@@ -17,4 +17,4 @@ RUN npm install --no-fund --no-update-notifier --no-audit
 
 COPY start.sh ./
 
-CMD ["bash", "start.sh"]
+CMD ["sh", "start.sh"]
