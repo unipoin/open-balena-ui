@@ -31,6 +31,7 @@ export const DeviceLogs = () => {
   const record = useRecordContext();
   const [loaded, setLoaded] = React.useState(false);
   const [containers, setContainers] = React.useState([]);
+  const [container, setContainer] = React.useState('default');
   const [content, setContent] = React.useState('');
   const dataProvider = useDataProvider();
   const authProvider = useAuthProvider();
@@ -162,7 +163,7 @@ export const DeviceLogs = () => {
             emptyValue='default'
             size='small'
             label=''
-            onChange={(event) => onSubmit(event.target.value)}
+            onChange={(event) => setContainer(event.target.value)}
           />
         </Box>
       </Form>
