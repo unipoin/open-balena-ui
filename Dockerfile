@@ -16,7 +16,7 @@ COPY ./webpack.*.js ./
 RUN NODE_ENV=development npm install --no-fund --no-update-notifier --no-audit \
     && BABEL_ENV=node npm run build
 
-FROM base
+FROM base as productionImage
 
 COPY --from=builder /usr/src/app/server/ /usr/src/app/server/
 COPY --from=builder /usr/src/app/dist/ /usr/src/app/dist/
