@@ -73,7 +73,7 @@ export const ReleaseField = (props) => {
         return (
           <>
             <ReferenceField label='Current Release' source='is running-release' reference='release' target='id'>
-              <SemVerChip />
+              <SemVerChip sx={{position: 'relative', top: '-5px'}} />
             </ReferenceField>
 
             <Tooltip
@@ -81,7 +81,12 @@ export const ReleaseField = (props) => {
               arrow={true}
               title={'Target Release: ' + (targetRelease || 'n/a')}
             >
-              <span style={{ color: (!isUpToDate && isOnline) ? theme.palette.error.light : theme.palette.text.primary }}>
+              <span style={{
+                position: 'relative',
+                top: '3px',
+                left: '3px',
+                color: (!isUpToDate && isOnline) ? theme.palette.error.light : theme.palette.text.primary
+              }}>
                 {
                   isUpToDate ? <Done /> :
                   isOnline ? <Warning /> :
