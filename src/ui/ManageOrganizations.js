@@ -31,7 +31,7 @@ export const ManageOrganizations = (props) => {
 
   const onChangeHandler = arrayOfSelected => {
     setSelectedOrganizations(arrayOfSelected);
-    setValue(props.source, arrayOfSelected);
+    setValue(props.source, arrayOfSelected, { shouldDirty: true });
   };
 
   React.useEffect(() => {
@@ -58,7 +58,7 @@ export const ManageOrganizations = (props) => {
         })
         .then((existingMappings) => {
           const selectedIds = existingMappings.data.map((x) => x['is member of-organization']);
-          onChangeHandler(selectedIds);
+          setSelectedOrganizations(selectedIds);
           loaded.selected = true;
           setLoaded(loaded);
         });
@@ -86,6 +86,7 @@ export const ManageOrganizations = (props) => {
 
       <TextInput
         source={props.source}
+        defaultValue={selectedOrganizations}
         style={{ display: 'none' }}
       />
     </Box>

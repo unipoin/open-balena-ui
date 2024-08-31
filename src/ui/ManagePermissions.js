@@ -66,7 +66,7 @@ export const ManagePermissions = (props) => {
 
   const onChangeHandler = arrayOfSelected => {
     setSelectedPermissions(arrayOfSelected);
-    setValue(props.source, arrayOfSelected);
+    setValue(props.source, arrayOfSelected, { shouldDirty: true });
   };
 
   React.useEffect(() => {
@@ -109,7 +109,7 @@ export const ManagePermissions = (props) => {
         })
         .then((existingMappings) => {
           const selectedIds = existingMappings.data.map((x) => x.permission);
-          onChangeHandler(selectedIds);
+          setSelectedPermissions(selectedIds);
           loaded.selected = true;
           setLoaded(loaded);
         });
@@ -136,6 +136,7 @@ export const ManagePermissions = (props) => {
       />
       <TextInput
         source={props.source}
+        defaultValue={selectedPermissions}
         style={{ display: 'none' }}
       />
     </Box>

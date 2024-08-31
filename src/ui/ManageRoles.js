@@ -29,7 +29,7 @@ export const ManageRoles = (props) => {
 
   const onChangeHandler = arrayOfSelected => {
     setSelectedRoles(arrayOfSelected);
-    setValue(props.source, arrayOfSelected);
+    setValue(props.source, arrayOfSelected, { shouldDirty: true });
   };
 
   React.useEffect(() => {
@@ -56,7 +56,7 @@ export const ManageRoles = (props) => {
         })
         .then((existingMappings) => {
           const selectedIds = existingMappings.data.map((x) => x.role);
-          onChangeHandler(selectedIds);
+          setSelectedRoles(selectedIds);
           loaded.selected = true;
           setLoaded(loaded);
         });
@@ -83,6 +83,7 @@ export const ManageRoles = (props) => {
       />
       <TextInput
         source={props.source}
+        defaultValue={selectedRoles}
         style={{ display: 'none' }}
       />
     </Box>
