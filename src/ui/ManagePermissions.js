@@ -96,9 +96,9 @@ export const ManagePermissions = (props) => {
             }
           });
           setAllPermissions(permissionOpts);
+          loaded.all = true;
+          setLoaded(loaded);
         });
-      loaded.all = true;
-      setLoaded(loaded);
     }
     if (!loaded.selected && record) {
       dataProvider
@@ -109,14 +109,14 @@ export const ManagePermissions = (props) => {
         })
         .then((existingMappings) => {
           const selectedIds = existingMappings.data.map((x) => x.permission);
-          setSelectedPermissions(selectedIds);
+          onChangeHandler(selectedIds);
+          loaded.selected = true;
+          setLoaded(loaded);
         });
-      loaded.selected = true;
-      setLoaded(loaded);
     }
   }, [props, dataProvider, setLoaded, loaded, setAllPermissions, setSelectedPermissions]);
 
-  if (!loaded) return null;
+  if (!(loaded.all && loaded.selected)) return null;
 
   return (
     <Box sx={{ width: '800px' }}>

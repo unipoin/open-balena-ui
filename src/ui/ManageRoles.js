@@ -43,9 +43,9 @@ export const ManageRoles = (props) => {
         .then((roles) => {
           const roleOpts = roles.data.map((x) => ({ label: x.name, value: x.id }));
           setAllRoles(roleOpts);
+          loaded.all = true;
+          setLoaded(loaded);
         });
-      loaded.all = true;
-      setLoaded(loaded);
     }
     if (!loaded.selected && record) {
       dataProvider
@@ -56,14 +56,14 @@ export const ManageRoles = (props) => {
         })
         .then((existingMappings) => {
           const selectedIds = existingMappings.data.map((x) => x.role);
-          setSelectedRoles(selectedIds);
+          onChangeHandler(selectedIds);
+          loaded.selected = true;
+          setLoaded(loaded);
         });
-      loaded.selected = true;
-      setLoaded(loaded);
     }
   }, [props, dataProvider, setLoaded, loaded, setAllRoles, setSelectedRoles]);
 
-  if (!loaded) return null;
+  if (!(loaded.all && loaded.selected)) return null;
 
   return (
     <Box sx={{ width: '800px' }}>

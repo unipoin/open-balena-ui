@@ -45,9 +45,9 @@ export const ManageOrganizations = (props) => {
         .then((organizations) => {
           const organizationOpts = organizations.data.map((x) => ({ label: x.name, value: x.id }));
           setAllOrganizations(organizationOpts);
+          loaded.all = true;
+          setLoaded(loaded);
         });
-      loaded.all = true;
-      setLoaded(loaded);
     }
     if (!loaded.selected && record) {
       dataProvider
@@ -58,14 +58,14 @@ export const ManageOrganizations = (props) => {
         })
         .then((existingMappings) => {
           const selectedIds = existingMappings.data.map((x) => x['is member of-organization']);
-          setSelectedOrganizations(selectedIds);
+          onChangeHandler(selectedIds);
+          loaded.selected = true;
+          setLoaded(loaded);
         });
-      loaded.selected = true;
-      setLoaded(loaded);
     }
   }, [props, dataProvider, setLoaded, loaded, setAllOrganizations, setSelectedOrganizations]);
 
-  if (!loaded) return null;
+  if (!(loaded.all && loaded.selected)) return null;
 
   return (
     <Box sx={{ width: '800px' }}>
