@@ -1,3 +1,28 @@
+# [1.2.0](https://github.com/unipoin/open-balena-ui/compare/v1.1.0...v1.2.0) (2024-09-20)
+
+
+### Bug Fixes
+
+* Device bulk delete function fixed ([ab15760](https://github.com/unipoin/open-balena-ui/commit/ab157602f216ef877076ee8b18c750d5669ec39d))
+* Forward extra props to Chip ([7c71d54](https://github.com/unipoin/open-balena-ui/commit/7c71d546ef3fd4eb21d70beee46e105a92696149))
+* Forward RecordContext to child components in list ([05dccbb](https://github.com/unipoin/open-balena-ui/commit/05dccbb020a43880f59be55d4190b5452fd19cbc))
+* Make sure service-installs get created after and only if the actual device has been created successfully ([2f2edbd](https://github.com/unipoin/open-balena-ui/commit/2f2edbd5baf66523b7cd8669fea2cccf919efe1c))
+* Preload behavior of DualListBoxes fixed ([cbc2e22](https://github.com/unipoin/open-balena-ui/commit/cbc2e22d8986b9816c8f0c0047aca5753cd91de5))
+* Properly handle list service vars when shown in device dashboard ([92e5971](https://github.com/unipoin/open-balena-ui/commit/92e59718626e4f815d741f755c60f65e0060707f))
+
+
+### Features
+
+* Add refresh button ([e2e64b0](https://github.com/unipoin/open-balena-ui/commit/e2e64b06bd02bbc38b2352bc1ad46e1ae4fb862e))
+* Add status indicator icon in place of checkbox ([9e7a954](https://github.com/unipoin/open-balena-ui/commit/9e7a9543c8d088231a3bd326496eed60f2625021))
+* AlwaysEnableSaveButton removed for ApiKeyEditForm to have it consistent with other forms ([68849ab](https://github.com/unipoin/open-balena-ui/commit/68849abfad7ec31d969d89663f5b7a87136c0bc6))
+* AlwaysEnableSaveButton removed for RoleEditForm to have it consistent with other forms ([d31bb36](https://github.com/unipoin/open-balena-ui/commit/d31bb36ea56f994bf12b5b2d1668ab4533f2e0e1))
+* AlwaysEnableSaveButton removed for UserEditForm to have it consistent with other forms ([1920a18](https://github.com/unipoin/open-balena-ui/commit/1920a1806d8daa64e066cd7ab48d5283025b07d4))
+* Device dashboard made responsive ([8222148](https://github.com/unipoin/open-balena-ui/commit/8222148fb11929411d5dcc273adc88df8828384c))
+* Handle container selection with state hook ([14accd4](https://github.com/unipoin/open-balena-ui/commit/14accd4b8f9121bca04070ac98ec9dd68a513568))
+* Highlight error and system messages ([8ecd31e](https://github.com/unipoin/open-balena-ui/commit/8ecd31ed50ff4864d35c1f3f79695029d09a4cc7))
+* Make device selection an AutocompleteInput which is much more handy for long lists ([3cfdce8](https://github.com/unipoin/open-balena-ui/commit/3cfdce8a26430fe94d05a6e86db82d6527372023))
+
 # [1.1.0](https://github.com/unipoin/open-balena-ui/compare/v1.0.5...v1.1.0) (2024-08-29)
 
 
