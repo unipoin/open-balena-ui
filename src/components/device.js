@@ -22,9 +22,11 @@ import {
   Toolbar,
   required,
   useRedirect,
+  useListContext,
+  WithRecord,
 } from 'react-admin';
 import { v4 as uuidv4 } from 'uuid';
-import { useCreateDevice, useModifyDevice } from '../lib/device';
+import { useCreateDevice, useModifyDevice, useSetServicesForNewDevice } from '../lib/device';
 import CopyChip from '../ui/CopyChip';
 import DeleteDeviceButton from '../ui/DeleteDeviceButton';
 import DeviceConnectButton from '../ui/DeviceConnectButton';
@@ -72,7 +74,7 @@ export const ReleaseField = (props) => {
         return (
           <>
             <ReferenceField label='Current Release' source='is running-release' reference='release' target='id'>
-              <SemVerChip />
+              <SemVerChip sx={{position: 'relative', top: '-5px'}} />
             </ReferenceField>
 
             <Tooltip
@@ -80,7 +82,12 @@ export const ReleaseField = (props) => {
               arrow={true}
               title={'Target Release: ' + (targetRelease || 'n/a')}
             >
-              <span style={{ color: (!isUpToDate && isOnline) ? theme.palette.error.light : theme.palette.text.primary }}>
+              <span style={{
+                position: 'relative',
+                top: '3px',
+                left: '3px',
+                color: (!isUpToDate && isOnline) ? theme.palette.error.light : theme.palette.text.primary
+              }}>
                 {
                   isUpToDate ? <Done /> :
                   isOnline ? <Warning /> :
@@ -97,13 +104,16 @@ export const ReleaseField = (props) => {
 
 const deviceFilters = [<SearchInput source="#uuid,device name,status@ilike" alwaysOn />];
 
-const CustomBulkActionButtons = (props) => (
-  <React.Fragment>
-    <DeleteDeviceButton size="small" {...props}>
-      Delete Selected Devices
-    </DeleteDeviceButton>
-  </React.Fragment>
-);
+const CustomBulkActionButtons = (props) => {
+  const { selectedIds } = useListContext();
+  return (
+    <React.Fragment>
+      <DeleteDeviceButton size="small" selectedIds={selectedIds} {...props}>
+        Delete Selected Devices
+      </DeleteDeviceButton>
+    </React.Fragment>
+  );
+};
 
 const ExtendedPagination = (
   { rowsPerPageOptions = [5, 10, 25, 50, 100, 250], ...rest }
@@ -146,8 +156,12 @@ export const DeviceList = (props) => {
         <Toolbar sx={{ background: 'none', padding: '0' }}>
           <ShowButton variant='outlined' label='' size='small' />
           <EditButton variant='outlined' label='' size='small' />
-          <DeviceServicesButton variant='outlined' size='small' />
-          <DeviceConnectButton variant='outlined' size='small' />
+          <WithRecord render={device =>
+            <>
+              <DeviceServicesButton variant='outlined' size='small' device={device} />
+              <DeviceConnectButton variant='outlined' size='small' record={device} />
+            </>
+          } />
           <DeleteDeviceButton variant='outlined' size='small' style={{ marginRight: '0 !important' }} />
         </Toolbar>
       </Datagrid>
@@ -157,10 +171,16 @@ export const DeviceList = (props) => {
 
 export const DeviceCreate = (props) => {
   const createDevice = useCreateDevice();
+  const setServicesForNewDevice = useSetServicesForNewDevice();
   const redirect = useRedirect();
 
+  const onSuccess = async (data) => {
+    await setServicesForNewDevice(data);
+    redirect('list', 'device', data.id);
+  }
+
   return (
-    <Create title='Create Device' transform={createDevice} redirect='list'>
+    <Create title='Create Device' transform={createDevice} mutationOptions={{ onSuccess }}>
       <SimpleForm>
         <Row>
           <TextInput

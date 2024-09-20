@@ -15,6 +15,7 @@ import {
   Toolbar,
   required,
   useShowContext,
+  useGetManyReference,
 } from 'react-admin';
 import { useCreateDeviceServiceVar, useModifyDeviceServiceVar } from '../lib/deviceServiceVar';
 import CopyChip from '../ui/CopyChip';
@@ -30,9 +31,25 @@ export const DeviceServiceVarList = () => {
 
   try {
     const showContext = useShowContext();
+
+    const { data, isLoading, isError } = useGetManyReference (
+      'service install',
+      {
+        target: 'device',
+        id: showContext.record.id
+      }
+    )
+
+    const serviceInstallIds = data?.map(x => x.id) || [];
+
     listProps = {
       resource: 'device service environment variable',
-      filter: {'device' : showContext.record.id}
+      queryOptions: !isLoading && {
+        select: (res) => {
+          res.data = res.data.filter(x => serviceInstallIds.includes(x['service install']));
+          return res;
+        }
+      }
     }
   } catch (e) {}
 
@@ -117,7 +134,7 @@ export const DeviceServiceVarEdit = () => {
     <Edit transform={modifyDeviceServiceVar} title='Edit Device Service Var'>
       <SimpleForm>
         <Row>
-          <SelectDevice label='Device' source='device' />
+          <SelectDevice label='Device' source='device' validate={required()} />
 
           <FormDataConsumer>
             {({ formData, ...rest }) => {
@@ -126,7 +143,8 @@ export const DeviceServiceVarEdit = () => {
                   <SelectDeviceService
                     label='Service'
                     source='service install'
-                    device={formData.device || formData['service install']}
+                    device={formData.device || -1}
+                    validate={required()}
                   />
                 )
               );

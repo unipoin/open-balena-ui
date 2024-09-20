@@ -29,9 +29,10 @@ const DashboardLayout = () => {
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
+          flexWrap: 'wrap'
         }}
       >
-        <div style={{ width: '50%', marginRight: '7.5px' }}>
+        <div style={{ flex: 2, margin: '7.5px', minWidth: '600px'}}>
           <Card style={{ padding: '15px' }}>
             <ControlsWidget />
           </Card>
@@ -62,7 +63,7 @@ const DashboardLayout = () => {
           </Card>
         </div>
 
-        <div style={{ width: '50%', marginLeft: '7.5px' }}>
+        <div style={{ flex: 3, margin: '7.5px', minWidth: '550px' }}>
           <Card sx={{ padding: '15px' }}>
             <UsageWidget />
           </Card>

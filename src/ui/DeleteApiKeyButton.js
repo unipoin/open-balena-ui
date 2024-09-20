@@ -23,7 +23,7 @@ export const DeleteApiKeyButton = (props) => {
       else {
         await deleteApiKey(record);
       }
-      notify('API Key(s) successfully deleted');
+      notify('API Key(s) successfully deleted', {type: 'success'});
     }
     catch (e) {
       notify('Failed to delete API Key(s): ' + e.message, {type: 'error'});

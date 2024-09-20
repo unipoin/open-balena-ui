@@ -125,7 +125,7 @@ export const UserEdit = (props) => {
         },
       }}
     >
-      <SimpleForm toolbar={<CustomToolbar alwaysEnableSaveButton />}>
+      <SimpleForm toolbar={<CustomToolbar />}>
         <Row>
           <TextInput name='email' source='email' size='large' type='email' validate={[required(), email()]} />
           <TextInput name='username' source='username' size='large' validate={required()} readOnly={true} />
