@@ -1,4 +1,4 @@
-FROM node:22-alpine as base
+FROM node:lts-alpine as base
 
 ENV NODE_ENV=production
 
