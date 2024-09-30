@@ -5,7 +5,8 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/app
 COPY ./package.json ./
 
-RUN npm install --no-fund --no-update-notifier --no-audit
+RUN npm install --no-fund --no-update-notifier --no-audit \
+    && npm cache clean --force
 
 FROM base as builder
 
@@ -14,6 +15,7 @@ COPY ./src ./src
 COPY ./webpack.*.js ./
 
 RUN NODE_ENV=development npm install --no-fund --no-update-notifier --no-audit \
+    && npm cache clean --force \
     && BABEL_ENV=node npm run build
 
 FROM base as productionImage
