@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/unipoin/open-balena-ui/compare/v1.2.0...v1.3.0) (2024-10-30)
+
+
+### Features
+
+* Add denial-of-service protection to api endpoints ([e984319](https://github.com/unipoin/open-balena-ui/commit/e984319b1035d68923006f66bc267bbec2aa7654))
+* set node version fix to current lts. ([3ca6dbe](https://github.com/unipoin/open-balena-ui/commit/3ca6dbe076e86c0f48eb763f098cbddb121df514))
+
 # [1.2.0](https://github.com/unipoin/open-balena-ui/compare/v1.1.0...v1.2.0) (2024-09-20)
 
 
