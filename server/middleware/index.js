@@ -1,3 +1,4 @@
 module.exports = {
-  authorize: require('./authorize')
+  authorize: require('./authorize'),
+  dosProtect: require('./dosProtect'),
 }
