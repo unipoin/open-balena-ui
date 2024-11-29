@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/unipoin/open-balena-ui/compare/v1.3.0...v1.4.0) (2024-11-29)
+
+
+### Features
+
+* Show target release of fleet if no target is set for the device explicitly ([22b7b53](https://github.com/unipoin/open-balena-ui/commit/22b7b538375fe81796400ba2970ca936dde2b8f8))
+* Show target release of fleet if no target is set for the device… ([#35](https://github.com/unipoin/open-balena-ui/issues/35)) ([466bcdf](https://github.com/unipoin/open-balena-ui/commit/466bcdfe8f60b57d22fa5bb485da493c3219e9be))
+
 # [1.3.0](https://github.com/unipoin/open-balena-ui/compare/v1.2.0...v1.3.0) (2024-10-30)
 
 
