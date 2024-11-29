@@ -1,16 +1,35 @@
 import CopyChip from '../../ui/CopyChip';
-import { FunctionField, Link, ReferenceField, TextField, Title, useRecordContext } from 'react-admin';
-import { styled, Box, Tooltip, useTheme } from '@mui/material';
+import { FunctionField, Link, ReferenceField, TextField, Title, Loading, useGetOne, useRecordContext } from 'react-admin';
+import { styled, Box, Tooltip } from '@mui/material';
 import dateFormat from 'dateformat';
 import SemVerChip from '../../ui/SemVerChip';
 import React from 'react';
 
-const SummaryWidget = () => {
+const TargetRelease = () => {
   const record = useRecordContext();
-  const theme = useTheme();
 
   if (!record) {
     return null;
+  }
+  else if (!record['should be running-release']) {
+    const { data: fleet, isPending, error } = useGetOne('application', { id: record['belongs to-application'] });
+    if (isPending) { return <p>Loading</p>; }
+    if (error) { return <p>ERROR</p>; }
+    record['should be running-release'] = fleet['should be running-release'];
+  }
+
+  return (
+    <ReferenceField source='should be running-release' reference='release' target='id'>
+      <SemVerChip />
+    </ReferenceField>
+  );
+}
+
+const SummaryWidget = () => {
+  const record = useRecordContext();
+
+  if (!record) {
+    return <Loading />;
   }
 
   return (
@@ -96,9 +115,7 @@ const SummaryWidget = () => {
 
             <td>
               <Label>Target Release</Label>
-              <ReferenceField source='should be running-release' reference='release' target='id'>
-                <SemVerChip />
-              </ReferenceField>
+              <TargetRelease />
             </td>
           </tr>
 

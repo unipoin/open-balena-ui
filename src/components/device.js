@@ -21,6 +21,7 @@ import {
   TextInput,
   Toolbar,
   required,
+  useGetOne,
   useRedirect,
   useListContext,
   WithRecord,
@@ -67,8 +68,12 @@ export const ReleaseField = (props) => {
     <FunctionField
       {...props}
       render={(record, source) => {
+        const { data: fleet, isPending, error } = useGetOne('application', { id: record['belongs to-application'] });
+        if (isPending) { return <p>Loading</p>; }
+        if (error) { return <p>ERROR</p>; }
+
         const currentRelease = record[source];
-        const targetRelease =  record['should be running-release'];
+        const targetRelease =  record['should be running-release'] || fleet['should be running-release']
         const isUpToDate = !!(currentRelease && currentRelease === targetRelease);
         const isOnline = record['api heartbeat state'] === 'online';
         return (
