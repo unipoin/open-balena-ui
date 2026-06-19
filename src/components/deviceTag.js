@@ -16,26 +16,43 @@ import {
   Toolbar,
   required,
   useShowContext,
+  TopToolbar,
+  CreateButton,
+  useCreatePath,
 } from 'react-admin';
+import { useLocation } from 'react-router';
 import CopyChip from '../ui/CopyChip';
 import Row from '../ui/Row';
 
 export const DeviceTagList = () => {
+
   let listProps = {
-    title: 'Device Tags',
-  };
+    title: 'Device Tags'
+  }
 
   try {
     const showContext = useShowContext();
+    const createPath = useCreatePath();
+    const resource = 'device tag'
+
     listProps = {
-      resource: 'device tag',
-      filter: { device: showContext.record.id },
-    };
+      resource,
+      filter: { 'device': showContext.record.id },
+      actions: (
+        <TopToolbar>
+          <CreateButton to={{
+            pathname: createPath ({ resource, type: 'create'}),
+            search: `?device=${showContext.record.id}`
+          }} />
+        </TopToolbar>
+      ),
+      empty: false
+    }
   } catch (e) {}
 
   return (
     <List {...listProps}>
-      <Datagrid size='medium' rowClick={false}>
+      <Datagrid size='medium' rowClick={false} >
         <ReferenceField label='Device' source='device' reference='device' target='id'>
           <TextField source='device name' />
         </ReferenceField>
@@ -61,26 +78,37 @@ export const DeviceTagList = () => {
   );
 };
 
-export const DeviceTagCreate = () => (
-  <Create title='Create Device Tag' redirect='list'>
-    <SimpleForm>
-      <ReferenceInput
-        source='device'
-        reference='device'
-        target='id'
-        perPage={1000}
-        sort={{ field: 'device name', order: 'ASC' }}
-      >
-        <SelectInput optionText='device name' optionValue='id' validate={required()} fullWidth={true} />
-      </ReferenceInput>
+export const DeviceTagCreate = () => {
+  const location = useLocation();
+  let deviceDefaultValue = (new URLSearchParams(location.search)).get('device');
 
-      <Row>
-        <TextInput label='Name' source='tag key' validate={required()} size='large' />
-        <TextInput label='Value' source='value' validate={required()} size='large' />
-      </Row>
-    </SimpleForm>
-  </Create>
-);
+  return (
+    <Create title='Create Device Tag' redirect='list'>
+      <SimpleForm>
+        <ReferenceInput
+          source='device'
+          reference='device'
+          target='id'
+          perPage={1000}
+          sort={{ field: 'device name', order: 'ASC' }}
+        >
+          <SelectInput
+            optionText='device name'
+            optionValue='id'
+            validate={required()}
+            fullWidth={true}
+            defaultValue={deviceDefaultValue}
+          />
+        </ReferenceInput>
+
+        <Row>
+          <TextInput label='Name' source='tag key' validate={required()} size='large' />
+          <TextInput label='Value' source='value' validate={required()} size='large' />
+        </Row>
+      </SimpleForm>
+    </Create>
+  );
+};
 
 export const DeviceTagEdit = () => (
   <Edit title='Edit Device Tag'>
